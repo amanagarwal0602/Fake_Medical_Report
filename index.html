@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=850, user-scalable=yes">
     <title>Pathology Report - ABC</title>
     <style>
         * {
@@ -371,16 +371,18 @@
             }
         }
     
-        /* Mobile Scaling */
-        @media screen and (max-width: 800px) {
-            body {
-                zoom: calc(100vw / 850); /* Fit to screen */
+        /* Mobile Accessibility */
+        @media screen and (max-width: 850px) {
+            .controls-bar {
+                zoom: 1.4; /* Enlarge for easy tapping */
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
             }
-            /* Hide print button on mobile to save space */
-            .print-btn {
-                zoom: 1.5;
-                top: 5px;
-                right: 5px;
+            .page-controls {
+                opacity: 1; /* Always visible on mobile (no hover needed) */
+                zoom: 1.2;
+                right: 10px;
             }
         }
         .page-controls {
