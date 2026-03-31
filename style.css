@@ -1,0 +1,366 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arimo', Arial, sans-serif;
+    background-color: #d8d8d8; /* Darker backplate to pop the paper */
+    color: #333;
+    line-height: 1.4;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 30px;
+}
+
+.page-container {
+    width: 210mm; /* A4 width */
+    min-height: 297mm; /* A4 height */
+    background-color: #faf9f6; /* slightly off-white paper color */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.02), 0 5px 15px rgba(0,0,0,0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.page-container::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    box-shadow: inset 0 0 80px rgba(0,0,0,0.06); /* Scanner vignette edge */
+    pointer-events: none;
+}
+
+/* Header */
+.header {
+    background-color: #0b5087;
+    color: #fff;
+    position: relative;
+    padding: 30px 40px;
+}
+
+.header-top-right {
+    position: absolute;
+    top: 5px;
+    right: 40px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    font-size: 45px;
+}
+
+.brand-name h1 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.brand-name h2 {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+.contact-info {
+    text-align: left;
+    font-size: 13px;
+}
+
+.contact-item {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Patient Info */
+.patient-info {
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #ccc;
+    font-size: 12px;
+}
+
+.patient-details {
+    flex: 1;
+}
+
+.patient-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.details-table td {
+    padding: 2px 5px 2px 0;
+}
+
+.details-table .label {
+    width: 80px;
+}
+
+.date-table .label {
+    width: 90px;
+}
+
+.barcode-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px dashed #ccc;
+    border-right: 1px dashed #ccc;
+    padding: 0 15px;
+}
+
+.barcode {
+    height: 30px;
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.bar-line { background: #000; height: 100%; margin-right: 2px;}
+.bthick { width: 4px; }
+.bmedium { width: 2px; }
+.bthin { width: 1px; }
+
+.barcode-text {
+    font-size: 10px;
+    margin-bottom: 10px;
+}
+
+.qr-area {
+    flex: 0 0 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 15px;
+}
+
+.qr-label {
+    font-size: 9px;
+    margin-bottom: 5px;
+}
+
+.qr-image {
+    width: 70px;
+    height: 70px;
+}
+
+/* Report Content */
+.report-content {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+.department {
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.test-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+    border: 1px solid #000;
+}
+
+.results-table th, .results-table td {
+    padding: 5px 10px;
+    text-align: left;
+}
+
+.results-table th {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.col-test { width: 45%; }
+.col-value { width: 10%; text-align: right; }
+.col-flag { width: 5%; text-align: center; font-weight: bold; }
+.col-unit { width: 15%; text-align: center; }
+.col-ref { width: 25%; text-align: left; }
+
+.subheader td {
+    padding-top: 10px;
+}
+
+.indent {
+    padding-left: 25px !important;
+}
+
+.results-table td.value {
+    text-align: right;
+}
+
+.results-table td.flag {
+    text-align: center;
+}
+
+.results-table td:nth-child(4) {
+    text-align: center;
+}
+
+.widal-table th, .widal-table td {
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.widal-table th {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+}
+
+.col-titre {
+    text-align: right !important;
+}
+.widal-table .value {
+    text-align: left !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.mt-2 { margin-top: 10px; }
+.mt-4 { margin-top: 25px; }
+
+/* Notes Section */
+.notes-section {
+    margin-top: 25px;
+    font-size: 11px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.notes-section p {
+    margin-bottom: 5px;
+}
+
+.causes-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5px;
+    border: 1px dotted #999;
+}
+
+.causes-table th, .causes-table td {
+    border: 1px dotted #999;
+    padding: 3px 6px;
+    font-size: 10px;
+}
+
+.causes-table th {
+    text-align: left;
+    background-color: #f9f9f9;
+}
+
+
+/* Footer */
+.footer {
+    padding: 20px 40px;
+    margin-top: auto;
+}
+
+.signatures {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.sig-block {
+    text-align: center;
+    width: 180px;
+}
+
+.sig-name {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.sig-title {
+    font-size: 10px;
+}
+
+.page-number {
+    font-size: 11px;
+}
+
+.right-align {
+    text-align: center;
+}
+
+.legal-notice {
+    text-align: center;
+    border-top: 2px solid #0b5087;
+    padding-top: 10px;
+}
+
+.not-valid {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.timings {
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+.disclaimer {
+    font-size: 9px;
+    color: #666;
+    background-color: #f5f5f5;
+    padding: 10px;
+}
+
+/* Print adjustments */
+@media print {
+    body {
+        background-color: #fff;
+        padding: 0;
+        gap: 0;
+    }
+    .page-container {
+        box-shadow: none;
+        background-image: none;
+        background-color: #fff;
+        width: 100%;
+        margin-bottom: 0;
+        page-break-after: always;
+    }
+    .page-container::after { content: none; }
+}
